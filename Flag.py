@@ -10,7 +10,8 @@ url = "https://www.pornhub.com/view_video.php?viewkey=ph63b4cd6330ad1"
 #this is a very simple content restriction program
 
 def flag_text(host) :
-    buzz = ["enter explicit buzzwords here"]
+    buzz = ["fuck", "shit", "bitch", "cunt", "pussy", "asshole", "pornographic", "whore", "death", "dead", "drugs", "cocaine", "meth",
+            "methamphetamine", "marijuana", "rape", "trafficking", "heroin", "gunned", "sex"]
     page = urlopen(host)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")

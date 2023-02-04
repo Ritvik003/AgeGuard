@@ -1,11 +1,8 @@
-#borrowed from https://github.com/indently/webcam_face_recognition/blob/master/recognition.py
-
 import face_recognition
 import os, sys
 import cv2
 import numpy as np
 import math
-import time
 
 
 # Helper
@@ -41,24 +38,21 @@ class FaceRecognition:
         print(self.known_face_names)
 
     def run_recognition(self):
-        seconds = 80
         video_capture = cv2.VideoCapture(0)
 
         if not video_capture.isOpened():
-            sys.exit('Enable AgeGuard camera access in settings')
-
-        
-        while True:
-            
+            sys.exit('Video source not found...')
+        seconds = 700
+        while True or seconds != 0:
             ret, frame = video_capture.read()
-
             timer_font = cv2.FONT_HERSHEY_PLAIN
-            cv2.putText(frame, str(seconds-10), 
-                        (200, 250), timer_font,
-                        7, (0, 255, 255),
-                        4, cv2.LINE_AA)
-            cv2.imshow('a', frame) #this might not be necessary
-            cv2.waitKey(125)
+            if seconds % 100 == 0:
+                cv2.putText(frame, str(seconds), 
+                            (200, 250), timer_font,
+                            7, (0, 255, 255),
+                            4, cv2.LINE_AA)
+                cv2.imshow('a', frame) #this might not be necessary
+            cv2.waitKey(1)
             seconds = seconds-10
 
             # Only process every other frame of video to save time
@@ -106,10 +100,10 @@ class FaceRecognition:
                 cv2.putText(frame, name, (left + 6, bottom - 6), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 255, 255), 1)
 
             # Display the resulting image
-            cv2.imshow('Hold still...', frame)
+            cv2.imshow('Face Recognition', frame)
 
             # Hit 'q' on the keyboard to quit!
-            if cv2.waitKey(1) == ord('q') or seconds == 0:
+            if cv2.waitKey(1) == ord('q'):
                 break
 
         # Release handle to the webcam
@@ -120,4 +114,3 @@ class FaceRecognition:
 if __name__ == '__main__':
     fr = FaceRecognition()
     fr.run_recognition()
-

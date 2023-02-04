@@ -1,0 +1,20 @@
+{
+
+    "manifest_version": 3,
+    "name": "AgeGuard",
+    "version": "1.0.1",
+    "description": "Do more to keep your children protected from vulgar internet content.",
+    "icons": {
+        "16": "/images/AgeGuard16.png",
+        "48": "/images/AgeGuard48.png",
+        "128": "/images/AgeGuard128.png"
+    }, 
+    "page_action": {
+        "default_icon": {
+            "16": "/images/AgeGuard16.png",
+            "48": "/images/AgeGuard48.png",
+            "128": "/images/AgeGuard128.png"
+        }
+    }, 
+    "content_scripts": ["content.js"]
+}
